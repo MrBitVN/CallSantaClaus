@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SantaCall Magic</string>
+    <string name="title_activity_main">SantaCall Magic</string>
+    <string name="package_name">com.santacall.magic</string>
+    <string name="custom_url_scheme">com.santacall.magic</string>
+</resources>
