@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#DC2626</color>
+    <color name="colorPrimaryDark">#991B1B</color>
+    <color name="colorAccent">#F59E0B</color>
+    <color name="santa_green">#059669</color>
+    <color name="santa_gold">#FBBF24</color>
+    <color name="santa_dark">#0F172A</color>
+</resources>

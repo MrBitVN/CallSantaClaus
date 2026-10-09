@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0708"
+    android:orientation="vertical">
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#1C1414"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="36dp"
+        android:paddingBottom="12dp">
+
+        <Button
+            android:id="@+id/btnBackFromChat"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:backgroundTint="#262222"
+            android:text="←"
+            android:textColor="#E5E7EB"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ông Già Noel 🎅"
+                android:textColor="#FEF3C7"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🟢 Đang trực tuyến tại Bắc Cực"
+                android:textColor="#86EFAC"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Chat Messages Scroll Container -->
+    <ScrollView
+        android:id="@+id/scrollChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:id="@+id/layoutMessagesList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Santa Welcome Bubble -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:background="#271919"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp"
+                android:maxWidth="280dp">
+
+                <TextView
+                    android:id="@+id/tvSantaWelcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ho ho ho! Chào bé yêu! Ta là Ông già Noel đây! Giáng Sinh này bé có điều ước gì nhắn tin cho Ta nhé!"
+                    android:textColor="#FEF3C7"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Quick Question Chips -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="6dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/chip1"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="6dp"
+                android:backgroundTint="#262222"
+                android:text="🎁 Ông đang chuẩn bị quà gì?"
+                android:textColor="#FDE68A"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/chip2"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="6dp"
+                android:backgroundTint="#262222"
+                android:text="🦌 Tuần lộc Rudolph ra sao rồi?"
+                android:textColor="#FDE68A"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/chip3"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:backgroundTint="#262222"
+                android:text="⭐ Con có được vào Bé Ngoan không?"
+                android:textColor="#FDE68A"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- Input Box -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#161212"
+        android:padding="10dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/etChatMessage"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:background="#262222"
+            android:hint="Nhập tin nhắn gửi Santa..."
+            android:textColorHint="#9CA3AF"
+            android:textColor="#FFFFFF"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btnSendMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#DC2626"
+            android:text="Gửi"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

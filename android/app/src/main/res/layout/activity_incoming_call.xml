@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0808">
+
+    <!-- Ambient Glow Background -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#150808" />
+
+    <!-- Top Caller Information -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvIncomingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CUỘC GỌI ĐẾN TỪ BẮC CỰC"
+            android:textColor="#FBBF24"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1" />
+
+        <TextView
+            android:id="@+id/tvIncomingCallerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Ông Già Noel"
+            android:textColor="#FEF3C7"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvIncomingNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="+1 (225) SANTA-CLAUS"
+            android:textColor="#E5E7EB"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvSpecialForChild"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#271919"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:text="🎅 Cuộc gọi dành riêng cho Bé Yêu (5 tuổi)"
+            android:textColor="#FDE68A"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Center Avatar with Pulse Ring -->
+    <RelativeLayout
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/ivIncomingAvatar"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/splash"
+            android:scaleType="centerCrop" />
+    </RelativeLayout>
+
+    <!-- Bottom Action Buttons: Decline & Accept -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp">
+
+        <!-- Decline Button -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnDeclineCall"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="#DC2626"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:tint="#FFFFFF"
+                android:contentDescription="Từ chối" />
+
+            <TextView
+                android:id="@+id/tvDeclineLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Từ chối"
+                android:textColor="#E5E7EB"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Accept Button -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnAcceptCall"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="#16A34A"
+                android:src="@android:drawable/stat_sys_speakerphone"
+                android:tint="#FFFFFF"
+                android:contentDescription="Trả lời" />
+
+            <TextView
+                android:id="@+id/tvAcceptLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Trả lời"
+                android:textColor="#86EFAC"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -24,6 +24,37 @@
 
         </activity>
 
+        <!-- Native Activities -->
+        <activity
+            android:name=".AudioCallActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBarLaunch" />
+
+        <activity
+            android:name=".IncomingCallActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBarLaunch" />
+
+        <activity
+            android:name=".VideoCallActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBarLaunch" />
+
+        <activity
+            android:name=".ParentSettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBarLaunch" />
+
+        <activity
+            android:name=".VoicemailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBarLaunch" />
+
+        <activity
+            android:name=".SantaChatActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBarLaunch" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
