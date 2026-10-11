@@ -231,6 +231,18 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <!-- Video Messages Button -->
+        <Button
+            android:id="@+id/btnMainVideoMessages"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#271919"
+            android:text="🎬 Video Lời Nhắn Từ Santa (Sinh Nhật, Sổ Ngoan...)"
+            android:textColor="#FBBF24"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
         <!-- Scenarios Section -->
         <TextView
             android:layout_width="wrap_content"

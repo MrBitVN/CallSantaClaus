@@ -106,9 +106,15 @@ class IncomingCallViewController: UIViewController {
 
     @objc private func acceptTapped() {
         SoundManager.shared.stopRingtone()
-        let callVC = AudioCallViewController()
-        callVC.modalPresentationStyle = .fullScreen
-        present(callVC, animated: true)
+        if callType == "video" {
+            let videoVC = VideoCallViewController()
+            videoVC.modalPresentationStyle = .fullScreen
+            present(videoVC, animated: true)
+        } else {
+            let callVC = AudioCallViewController()
+            callVC.modalPresentationStyle = .fullScreen
+            present(callVC, animated: true)
+        }
     }
 
     deinit {

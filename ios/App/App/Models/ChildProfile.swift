@@ -9,7 +9,7 @@ struct ChildProfile: Codable {
     var goodHabit: String = "Biết vâng lời và chăm học"
     var badHabit: String = "Đi ngủ đúng giờ"
     var dreamGift: String = "Bộ lego cỗ xe tuần lộc"
-    var isNice: Boolean = true
+    var isNice: Bool = true
     var language: String = "vi" // "vi" or "en"
 
     static let userDefaultsKey = "SantaChildProfileKey"

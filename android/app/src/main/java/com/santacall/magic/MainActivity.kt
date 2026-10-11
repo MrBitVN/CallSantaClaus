@@ -19,6 +19,7 @@ class MainActivity : Activity() {
     private lateinit var btnMainVoiceCall: Button
     private lateinit var btnMainVoicemail: Button
     private lateinit var btnMainChat: Button
+    private lateinit var btnMainVideoMessages: Button
     private lateinit var btnTriggerBirthday: Button
     private lateinit var btnTriggerDiscipline: Button
     private lateinit var btnSchedule10s: Button
@@ -61,6 +62,7 @@ class MainActivity : Activity() {
         btnMainVoiceCall = findViewById(R.id.btnMainVoiceCall)
         btnMainVoicemail = findViewById(R.id.btnMainVoicemail)
         btnMainChat = findViewById(R.id.btnMainChat)
+        btnMainVideoMessages = findViewById(R.id.btnMainVideoMessages)
         btnTriggerBirthday = findViewById(R.id.btnTriggerBirthday)
         btnTriggerDiscipline = findViewById(R.id.btnTriggerDiscipline)
         btnSchedule10s = findViewById(R.id.btnSchedule10s)
@@ -104,6 +106,12 @@ class MainActivity : Activity() {
         // Santa Chat
         btnMainChat.setOnClickListener {
             val intent = Intent(this, SantaChatActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Video Messages
+        btnMainVideoMessages.setOnClickListener {
+            val intent = Intent(this, VideoMessagesActivity::class.java)
             startActivity(intent)
         }
 

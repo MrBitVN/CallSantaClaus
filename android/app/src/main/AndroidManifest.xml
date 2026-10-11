@@ -55,6 +55,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBarLaunch" />
 
+        <activity
+            android:name=".VideoMessagesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBarLaunch" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
