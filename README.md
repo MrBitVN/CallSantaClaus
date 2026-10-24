@@ -13,6 +13,7 @@
    - Cài đặt nhanh qua ADB: chạy file [`CAI_DAT_LEN_ANDROID_ADB.bat`](./CAI_DAT_LEN_ANDROID_ADB.bat).
 
 2. **iOS (Swift)**:
+   - File cài đặt hoàn thiện (.IPA): [`SantaCall_Magic.ipa`](./SantaCall_Magic.ipa) (nằm ngay thư mục gốc, dung lượng ~37.8 MB, dùng để kéo cài trực tiếp vào iPhone qua Sideloadly / AltStore).
    - Thư mục dự án: [`ios/App`](./ios/App)
    - File đóng gói hoàn chỉnh: [`SantaCall_iOS.zip`](./SantaCall_iOS.zip) (chứa toàn bộ Xcode project `App.xcodeproj`, Swift source code, video HD chuyển động thực tế và âm thanh).
    - **Cách mở trên macOS/Xcode**:
