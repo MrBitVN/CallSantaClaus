@@ -13,6 +13,7 @@ class AudioCallViewController: UIViewController {
         case callCompleted
     }
 
+    var scenarioId: String = "interactive_call"
     private var profile = ChildProfile.load()
     private var currentStage: CallStage = .turn1Opening
     private var callSeconds = 0

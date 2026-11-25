@@ -57,7 +57,7 @@ Hệ thống CI/CD tự động build hoàn chỉnh cả 2 nền tảng **Androi
 
 - **Trigger**: Tự động chạy khi có commit push lên nhánh `main`, tạo Pull Request, tạo tag Release (ví dụ `v1.0.0`), hoặc chạy thủ công qua nút **Run workflow** (`workflow_dispatch`).
 - **Job 1 (`build-android`)**: Chạy trên `ubuntu-latest` với JDK 21 Temurin, biên dịch mã nguồn Kotlin và xuất ra file `SantaCall_Magic.apk`.
-- **Job 2 (`build-ios`)**: Chạy trên `macos-14` với Xcode 15.4, biên dịch mã nguồn Swift sang nhị phân thiết bị arm64, đóng gói cấu trúc `Payload/App.app` và xuất ra file `SantaCall_Magic.ipa`.
+- **Job 2 (`build-ios`)**: Chạy trên `macos-latest` với Xcode mới nhất, biên dịch mã nguồn Swift sang nhị phân thiết bị arm64, đóng gói cấu trúc `Payload/App.app` và xuất ra file `SantaCall_Magic.ipa`.
 - **Job 3 (`create-release`)**: Tự động đính kèm cả 2 file `.apk` và `.ipa` vào bản phát hành GitHub Releases khi gắn tag `v*`.
 
 ### 📥 Cách Tải File `.ipa` và `.apk` từ GitHub:
