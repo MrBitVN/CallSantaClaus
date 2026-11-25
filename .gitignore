@@ -26,4 +26,5 @@ scratch/
 commonMain/
 io/
 *.ipa
+!SantaCall_Magic.ipa
 

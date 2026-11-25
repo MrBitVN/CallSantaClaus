@@ -1,0 +1,21 @@
+{
+  "short_name": "SantaCall",
+  "name": "SantaCall Magic - Gọi Ông Già Noel",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0c0a09",
+  "theme_color": "#450a0a",
+  "display": "standalone",
+  "orientation": "portrait"
+}
