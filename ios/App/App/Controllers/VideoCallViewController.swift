@@ -69,14 +69,13 @@ class VideoCallViewController: UIViewController {
             view.layer.addSublayer(pLayer)
         }
 
-        // Loop playback
+        // Automatically end call when Santa finishes speaking
         NotificationCenter.default.addObserver(
             forName: .AVPlayerItemDidPlayToEndTime,
             object: player?.currentItem,
             queue: .main
         ) { [weak self] _ in
-            self?.player?.seek(to: .zero)
-            self?.player?.play()
+            self?.endCall()
         }
 
         player?.play()

@@ -48,3 +48,21 @@
 - `ParentSettingsViewController.swift`: Màn hình khóa PIN và cấu hình hồ sơ bé lưu vào `UserDefaults`.
 - `SoundManager.swift`: Quản lý âm thanh `AVAudioSession` chuẩn cuộc gọi (phát to rõ ngay cả khi gạt nút im lặng).
 - `ChildProfile.swift` & `CallScenario.swift`: Data models chuẩn Swift `Codable`.
+
+---
+
+## ⚡ GitHub Actions CI/CD Pipeline (`.github/workflows/build.yml`)
+
+Hệ thống CI/CD tự động build hoàn chỉnh cả 2 nền tảng **Android APK (Kotlin)** và **iOS IPA (Swift)** trên GitHub:
+
+- **Trigger**: Tự động chạy khi có commit push lên nhánh `main`, tạo Pull Request, tạo tag Release (ví dụ `v1.0.0`), hoặc chạy thủ công qua nút **Run workflow** (`workflow_dispatch`).
+- **Job 1 (`build-android`)**: Chạy trên `ubuntu-latest` với JDK 21 Temurin, biên dịch mã nguồn Kotlin và xuất ra file `SantaCall_Magic.apk`.
+- **Job 2 (`build-ios`)**: Chạy trên `macos-14` với Xcode 15.4, biên dịch mã nguồn Swift sang nhị phân thiết bị arm64, đóng gói cấu trúc `Payload/App.app` và xuất ra file `SantaCall_Magic.ipa`.
+- **Job 3 (`create-release`)**: Tự động đính kèm cả 2 file `.apk` và `.ipa` vào bản phát hành GitHub Releases khi gắn tag `v*`.
+
+### 📥 Cách Tải File `.ipa` và `.apk` từ GitHub:
+1. Vào tab **Actions** trên GitHub repository của bạn.
+2. Chọn lần chạy workflow mới nhất (**Build Android & iOS (Native)**).
+3. Kéo xuống mục **Artifacts** ở cuối trang để tải:
+   - `SantaCall-iOS-IPA`: File `SantaCall_Magic.ipa` để sideload lên iPhone/iPad (dùng Sideloadly / AltStore / TrollStore / Scarlet).
+   - `SantaCall-Android-APK`: File `SantaCall_Magic.apk` để cài đặt trực tiếp lên điện thoại Android.

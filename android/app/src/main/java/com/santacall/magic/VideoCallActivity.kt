@@ -56,8 +56,11 @@ class VideoCallActivity : Activity() {
 
             videoViewSanta.setVideoURI(Uri.fromFile(cacheFile))
             videoViewSanta.setOnPreparedListener { mp ->
-                mp.isLooping = true
+                mp.isLooping = false
                 videoViewSanta.start()
+            }
+            videoViewSanta.setOnCompletionListener {
+                endCall()
             }
         } catch (e: Exception) {
             e.printStackTrace()
