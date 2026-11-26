@@ -1,19 +1,18 @@
 package com.santacall.magic.models
 
 import android.content.Context
-import android.content.SharedPreferences
 
 data class ChildProfile(
-    var name: String = "Bé Yêu",
+    var name: String = "Little Star",
     var age: Int = 5,
     var gender: String = "boy", // "boy" or "girl"
-    var hobby: String = "Xếp hình Lego & Vẽ tranh",
-    var favoriteFood: String = "Bánh pizza & Sữa tươi",
-    var goodHabit: String = "Biết vâng lời và chăm học",
-    var badHabit: String = "Đi ngủ đúng giờ",
-    var dreamGift: String = "Bộ lego cỗ xe tuần lộc",
+    var hobby: String = "Lego & Drawing",
+    var favoriteFood: String = "Pizza & Milk",
+    var goodHabit: String = "Listening to parents and studying hard",
+    var badHabit: String = "Going to bed on time",
+    var dreamGift: String = "Lego Reindeer Sleigh",
     var isNice: Boolean = true,
-    var language: String = "vi" // "vi" or "en"
+    var language: String = "en"
 ) {
     companion object {
         private const val PREFS_NAME = "santa_profile_prefs"
@@ -31,16 +30,16 @@ data class ChildProfile(
         fun load(context: Context): ChildProfile {
             val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
             return ChildProfile(
-                name = prefs.getString(KEY_NAME, "Bé Yêu") ?: "Bé Yêu",
+                name = prefs.getString(KEY_NAME, "Little Star") ?: "Little Star",
                 age = prefs.getInt(KEY_AGE, 5),
                 gender = prefs.getString(KEY_GENDER, "boy") ?: "boy",
-                hobby = prefs.getString(KEY_HOBBY, "Xếp hình Lego & Vẽ tranh") ?: "Xếp hình Lego & Vẽ tranh",
-                favoriteFood = prefs.getString(KEY_FOOD, "Bánh pizza & Sữa tươi") ?: "Bánh pizza & Sữa tươi",
-                goodHabit = prefs.getString(KEY_GOOD_HABIT, "Biết vâng lời và chăm học") ?: "Biết vâng lời và chăm học",
-                badHabit = prefs.getString(KEY_BAD_HABIT, "Đi ngủ đúng giờ") ?: "Đi ngủ đúng giờ",
-                dreamGift = prefs.getString(KEY_DREAM_GIFT, "Bộ lego cỗ xe tuần lộc") ?: "Bộ lego cỗ xe tuần lộc",
+                hobby = prefs.getString(KEY_HOBBY, "Lego & Drawing") ?: "Lego & Drawing",
+                favoriteFood = prefs.getString(KEY_FOOD, "Pizza & Milk") ?: "Pizza & Milk",
+                goodHabit = prefs.getString(KEY_GOOD_HABIT, "Listening to parents and studying hard") ?: "Listening to parents and studying hard",
+                badHabit = prefs.getString(KEY_BAD_HABIT, "Going to bed on time") ?: "Going to bed on time",
+                dreamGift = prefs.getString(KEY_DREAM_GIFT, "Lego Reindeer Sleigh") ?: "Lego Reindeer Sleigh",
                 isNice = prefs.getBoolean(KEY_IS_NICE, true),
-                language = prefs.getString(KEY_LANGUAGE, "vi") ?: "vi"
+                language = "en"
             )
         }
 
@@ -56,7 +55,7 @@ data class ChildProfile(
                 putString(KEY_BAD_HABIT, profile.badHabit)
                 putString(KEY_DREAM_GIFT, profile.dreamGift)
                 putBoolean(KEY_IS_NICE, profile.isNice)
-                putString(KEY_LANGUAGE, profile.language)
+                putString(KEY_LANGUAGE, "en")
                 apply()
             }
         }

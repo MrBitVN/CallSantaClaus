@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="Bắc Cực • HD Audio"
+                android:text="North Pole • HD Audio"
                 android:textColor="#86EFAC"
                 android:textSize="11sp"
                 android:textStyle="bold" />
@@ -99,7 +99,7 @@
                 android:layout_centerHorizontal="true"
                 android:background="#F59E0B"
                 android:textColor="#1F1500"
-                android:text="🎅 Santa đang nói..."
+                android:text="🎅 Santa speaking..."
                 android:textSize="11sp"
                 android:textStyle="bold"
                 android:paddingStart="10dp"
@@ -113,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Ông Già Noel"
+            android:text="Santa Claus"
             android:textColor="#FEF3C7"
             android:textSize="26sp"
             android:textStyle="bold" />
@@ -123,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Cuộc gọi dành cho Bé Yêu (5 tuổi)"
+            android:text="Call for: Little Star (5 yo)"
             android:textColor="#FDE68A"
             android:textSize="13sp" />
 
@@ -151,14 +151,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="A lô! A lô! Có phải bé đó không? Ta là Ông già Noel đây! Cháu có nghe rõ Ta nói không nào?"
+                android:text="Ho ho ho! Hello there! This is Santa Claus calling from the North Pole!"
                 android:textColor="#F3F4F6"
                 android:textSize="13sp"
                 android:lineSpacingExtra="3dp" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Interactive Child Response Area (Calling & Response / Thưa gửi) -->
+    <!-- Interactive Child Response Area -->
     <LinearLayout
         android:id="@+id/layoutChildInteraction"
         android:layout_width="match_parent"
@@ -174,7 +174,7 @@
             android:id="@+id/tvPromptHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bé thưa chuyện với Ông già Noel:"
+            android:text="Answer Santa Claus:"
             android:textColor="#6EE7B7"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -194,7 +194,7 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="6dp"
                 android:backgroundTint="#059669"
-                android:text="⭐ Dạ con chào Ông!"
+                android:text="⭐ Yes, hello Santa!"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -206,7 +206,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
                 android:backgroundTint="#D97706"
-                android:text="🎅 Dạ con nghe rõ ạ!"
+                android:text="🎅 I hear you loud!"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -254,7 +254,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Tắt Mic"
+                    android:text="Mute"
                     android:textColor="#9CA3AF"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -274,13 +274,13 @@
                     android:background="#262222"
                     android:src="@android:drawable/ic_menu_rotate"
                     android:tint="#F59E0B"
-                    android:contentDescription="Restart" />
+                    android:contentDescription="Replay" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Gọi lại"
+                    android:text="Replay"
                     android:textColor="#9CA3AF"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -305,7 +305,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Phụ đề"
+                    android:text="Subtitles"
                     android:textColor="#9CA3AF"
                     android:textSize="11sp" />
             </LinearLayout>

@@ -20,19 +20,19 @@ class ParentSettingsActivity : Activity() {
     private lateinit var etChildName: EditText
     private lateinit var etChildAge: EditText
     private lateinit var etChildGift: EditText
-    private lateinit var btnLangVi: Button
-    private lateinit var btnLangEn: Button
+    private lateinit var btnNiceYes: Button
+    private lateinit var btnNiceNo: Button
     private lateinit var btnSaveProfile: Button
 
     private lateinit var profile: ChildProfile
-    private var selectedLanguage: String = "vi"
+    private var selectedIsNice: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parent_settings)
 
         profile = ChildProfile.load(this)
-        selectedLanguage = profile.language
+        selectedIsNice = profile.isNice
 
         initViews()
         setupListeners()
@@ -48,15 +48,14 @@ class ParentSettingsActivity : Activity() {
         etChildName = findViewById(R.id.etChildName)
         etChildAge = findViewById(R.id.etChildAge)
         etChildGift = findViewById(R.id.etChildGift)
-        btnLangVi = findViewById(R.id.btnLangVi)
-        btnLangEn = findViewById(R.id.btnLangEn)
+        btnNiceYes = findViewById(R.id.btnLangVi)
+        btnNiceNo = findViewById(R.id.btnLangEn)
         btnSaveProfile = findViewById(R.id.btnSaveProfile)
 
-        // Prepopulate values
         etChildName.setText(profile.name)
         etChildAge.setText(profile.age.toString())
         etChildGift.setText(profile.dreamGift)
-        updateLanguageButtons()
+        updateNiceButtons()
     }
 
     private fun setupListeners() {
@@ -70,43 +69,44 @@ class ParentSettingsActivity : Activity() {
                 layoutPinGate.visibility = View.GONE
                 layoutProfileForm.visibility = View.VISIBLE
             } else {
-                Toast.makeText(this, "Mã PIN không chính xác! (Mặc định: 1225)", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Incorrect PIN! (Default: 1225)", Toast.LENGTH_SHORT).show()
             }
         }
 
-        btnLangVi.setOnClickListener {
-            selectedLanguage = "vi"
-            updateLanguageButtons()
+        btnNiceYes.setOnClickListener {
+            selectedIsNice = true
+            updateNiceButtons()
         }
 
-        btnLangEn.setOnClickListener {
-            selectedLanguage = "en"
-            updateLanguageButtons()
+        btnNiceNo.setOnClickListener {
+            selectedIsNice = false
+            updateNiceButtons()
         }
 
         btnSaveProfile.setOnClickListener {
-            val name = etChildName.text.toString().trim().ifEmpty { "Bé Yêu" }
+            val name = etChildName.text.toString().trim().ifEmpty { "Little Star" }
             val age = etChildAge.text.toString().trim().toIntOrNull() ?: 5
-            val gift = etChildGift.text.toString().trim().ifEmpty { "Bộ đồ chơi lego" }
+            val gift = etChildGift.text.toString().trim().ifEmpty { "Lego Reindeer Sleigh" }
 
             profile.name = name
             profile.age = age
             profile.dreamGift = gift
-            profile.language = selectedLanguage
+            profile.isNice = selectedIsNice
+            profile.language = "en"
 
             ChildProfile.save(this, profile)
-            Toast.makeText(this, "Đã lưu cài đặt bé thành công!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Child profile saved successfully!", Toast.LENGTH_SHORT).show()
             finish()
         }
     }
 
-    private fun updateLanguageButtons() {
-        if (selectedLanguage == "vi") {
-            btnLangVi.setBackgroundColor(0xFF059669.toInt())
-            btnLangEn.setBackgroundColor(0xFF262222.toInt())
+    private fun updateNiceButtons() {
+        if (selectedIsNice) {
+            btnNiceYes.setBackgroundColor(0xFF059669.toInt())
+            btnNiceNo.setBackgroundColor(0xFF262222.toInt())
         } else {
-            btnLangVi.setBackgroundColor(0xFF262222.toInt())
-            btnLangEn.setBackgroundColor(0xFF059669.toInt())
+            btnNiceYes.setBackgroundColor(0xFF262222.toInt())
+            btnNiceNo.setBackgroundColor(0xFFD97706.toInt())
         }
     }
 }

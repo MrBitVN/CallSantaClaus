@@ -1,8 +1,8 @@
 package com.santacall.magic
 
 import android.app.Activity
-import android.media.ToneGenerator
 import android.media.AudioManager
+import android.media.ToneGenerator
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -46,15 +46,15 @@ class VoicemailActivity : Activity() {
         btnRecordWish.setOnClickListener {
             if (!isRecording) {
                 isRecording = true
-                btnRecordWish.text = "⏹️ Đang ghi âm... Nhấn để gửi Santa"
+                btnRecordWish.text = "⏹️ Recording... Tap to Send to Santa"
                 btnRecordWish.setBackgroundColor(0xFF059669.toInt())
-                tvWishStatus.text = "🎤 Bé hãy nói to điều ước muốn nhận vào micro nhé..."
+                tvWishStatus.text = "🎤 Speak your Christmas wish clearly into the microphone..."
                 SoundManager.vibrate(this, 100)
             } else {
                 isRecording = false
-                btnRecordWish.text = "🎙️ Ghi Âm Điều Ước Gửi Santa"
+                btnRecordWish.text = "🎙️ Record Wish for Santa"
                 btnRecordWish.setBackgroundColor(0xFFDC2626.toInt())
-                tvWishStatus.text = "✨ Đã gửi bản ghi âm điều ước của bé đến Bắc Cực thành công!"
+                tvWishStatus.text = "✨ Your wish recording has been delivered to the North Pole!"
                 SoundManager.vibrate(this, 200)
             }
         }

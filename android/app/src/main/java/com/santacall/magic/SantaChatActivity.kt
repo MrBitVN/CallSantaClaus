@@ -47,7 +47,7 @@ class SantaChatActivity : Activity() {
         chip3 = findViewById(R.id.chip3)
 
         val tvWelcome = findViewById<TextView>(R.id.tvSantaWelcome)
-        tvWelcome.text = "Ho ho ho! Chào ${profile.name} yêu quý! Ta là Ông già Noel đây! Giáng Sinh này bé có tâm sự hay mong ước gì cứ nhắn tin cho Ta nhé!"
+        tvWelcome.text = "Ho ho ho! Hello dear ${profile.name}! This is Santa Claus from the North Pole! Send me your Christmas wishes and questions anytime! 🎅✨"
     }
 
     private fun setupListeners() {
@@ -64,24 +64,22 @@ class SantaChatActivity : Activity() {
         }
 
         chip1.setOnClickListener {
-            sendMessage("🎁 Ông ơi, xưởng quà Bắc Cực đang làm món quà gì cho con thế ạ?")
+            sendMessage("🎁 What gift is the North Pole workshop making for me?")
         }
 
         chip2.setOnClickListener {
-            sendMessage("🦌 Chú tuần lộc Rudolph mũi đỏ đã sẵn sàng cất cánh chưa hả Ông?")
+            sendMessage("🦌 Is Rudolph the red-nosed reindeer ready to fly?")
         }
 
         chip3.setOnClickListener {
-            sendMessage("⭐ Năm nay con có tên trong Sổ Bé Ngoan nhận quà của Ông không ạ?")
+            sendMessage("⭐ Am I on the Nice List this year, Santa?")
         }
     }
 
     private fun sendMessage(childText: String) {
-        // Add Child message bubble
         addChildBubble(childText)
         SoundManager.vibrate(this, 50)
 
-        // Simulate Santa thinking and responding in 1.2s
         Handler(Looper.getMainLooper()).postDelayed({
             val santaReply = generateSantaReply(childText)
             addSantaBubble(santaReply)
@@ -143,14 +141,24 @@ class SantaChatActivity : Activity() {
     private fun generateSantaReply(input: String): String {
         val lower = input.lowercase()
         return when {
-            lower.contains("quà") || lower.contains("gift") ->
-                "Ho ho ho! Các chú lùn ở xưởng quà Bắc Cực đang gói món quà '${profile.dreamGift}' thắt nơ vàng lấp lánh cho bé ${profile.name} rồi đấy! Nhớ ăn ngoan và ngủ sớm nhé!"
-            lower.contains("tuần lộc") || lower.contains("rudolph") ->
-                "Ho ho ho! Chú tuần lộc Rudolph vừa ăn xong những củ cà rốt ngon lành, mũi đỏ của chú đang sáng rực rỡ sẵn sàng kéo cỗ xe bay qua bầu trời đêm Giáng Sinh!"
-            lower.contains("ngoan") || lower.contains("nice") ->
-                "Ho ho ho! Ta vừa mở Sổ Vàng Bé Ngoan, tên bé ${profile.name} đang tỏa sáng lấp lánh vì con rất biết vâng lời bố mẹ và chăm học! Ông già Noel tự hào về con lắm!"
+            lower.contains("gift") || lower.contains("present") || lower.contains("want") || lower.contains("wish") || lower.contains("toy") ->
+                "Ho ho ho! The elves in my North Pole workshop are wrapping '${profile.dreamGift}' with a golden ribbon just for ${profile.name}! Remember to eat well and go to bed early! 🎁✨"
+            lower.contains("reindeer") || lower.contains("rudolph") || lower.contains("sleigh") ->
+                "Ho ho ho! Rudolph just finished munching on crunchy sweet carrots, and his red nose is shining bright for our magical Christmas Eve flight! 🦌✨"
+            lower.contains("nice") || lower.contains("good") || lower.contains("list") || lower.contains("promise") ->
+                if (profile.isNice) {
+                    "Ho ho ho! I just checked my Golden Nice List, and ${profile.name}'s name is shining at the very top! Santa is so proud of you! ⭐🎄"
+                } else {
+                    "Ho ho ho! Keep listening to mommy and daddy and doing your best, ${profile.name}! Santa believes in you and knows you'll earn your spot on the Nice List! ⭐"
+                }
+            lower.contains("cold") || lower.contains("snow") || lower.contains("north pole") || lower.contains("weather") ->
+                "It is -18°C here at the North Pole with fluffy white snow falling all over the elf workshop! Good thing Mrs. Claus made hot cocoa! ❄️☕"
+            lower.contains("hello") || lower.contains("hi") || lower.contains("hey") ->
+                "Ho ho ho! Hello there, ${profile.name}! It makes Santa so happy to hear from you! How has your day been? 🎅❤️"
+            lower.contains("merry christmas") || lower.contains("love") || lower.contains("thank") ->
+                "Ho ho ho! Merry Christmas to you and your wonderful family, ${profile.name}! Sending warm North Pole hugs! 🎄❤️"
             else ->
-                "Ho ho ho! Tin nhắn của ${profile.name} làm trái tim già này ấm áp vô cùng! Chúc con và gia đình một mùa Giáng Sinh an lành và ngập tràn niềm vui nhé!"
+                "Ho ho ho! Your message warms my jolly heart, ${profile.name}! Keep smiling, be kind, and have a magical Christmas season! 🎅✨"
         }
     }
 

@@ -65,9 +65,9 @@ class SoundManager: NSObject, AVAudioPlayerDelegate {
     func startRingtone() {
         stopRingtone()
 
-        var ringUrl = Bundle.main.url(forResource: "santa_ring_call_vi", withExtension: "mp3")
+        var ringUrl = Bundle.main.url(forResource: "santa_ring_call_en", withExtension: "mp3")
         if ringUrl == nil {
-            ringUrl = Bundle.main.url(forResource: "santa_ring_call_vi", withExtension: "mp3", subdirectory: "public/audio")
+            ringUrl = Bundle.main.url(forResource: "santa_ring_call_en", withExtension: "mp3", subdirectory: "public/audio")
         }
 
         guard let url = ringUrl else { return }

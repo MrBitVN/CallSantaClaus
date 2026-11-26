@@ -84,13 +84,8 @@ class AudioCallActivity : Activity() {
         btnToggleSubtitles = findViewById(R.id.btnToggleSubtitles)
         btnEndCall = findViewById(R.id.btnEndCall)
 
-        val isVi = profile.language == "vi"
-        tvCallerName.text = if (isVi) "Ông Già Noel" else "Santa Claus"
-        tvChildInfo.text = if (isVi) {
-            "Cuộc gọi cho: ${profile.name} (${profile.age} tuổi)"
-        } else {
-            "Call for: ${profile.name} (${profile.age} yo)"
-        }
+        tvCallerName.text = "Santa Claus"
+        tvChildInfo.text = "Call for: ${profile.name} (${profile.age} yo)"
     }
 
     private fun setupListeners() {
@@ -104,7 +99,7 @@ class AudioCallActivity : Activity() {
 
         btnMute.setOnClickListener {
             isMuted = !isMuted
-            tvMuteLabel.text = if (isMuted) "Bật Mic" else "Tắt Mic"
+            tvMuteLabel.text = if (isMuted) "Unmute" else "Mute"
             btnMute.alpha = if (isMuted) 0.5f else 1.0f
         }
 
@@ -144,24 +139,33 @@ class AudioCallActivity : Activity() {
     private fun startStage(stage: CallStage) {
         cancelPauseTimer()
         currentStage = stage
-        val isVi = profile.language == "vi"
 
         when (stage) {
             CallStage.TURN1_OPENING -> {
-                tvStageBadge.text = if (isVi) "🎅 Santa đang nói..." else "🎅 Santa speaking..."
+                tvStageBadge.text = "🎅 Santa speaking..."
                 tvStageBadge.setBackgroundColor(0xFFF59E0B.toInt())
                 tvStageBadge.setTextColor(0xFF1F1500.toInt())
                 layoutChildInteraction.visibility = View.GONE
 
-                val text = if (isVi) {
-                    "A lô! A lô! Có phải bé ${profile.name} đó không? Ta là Ông già Noel gọi đến từ Bắc Cực đây! Cháu yêu có nghe rõ giọng của Ông không nào?"
-                } else {
-                    "Ho ho ho! Hello there! Is that my little friend ${profile.name}? This is Santa Claus calling all the way from the snowy North Pole! Can you hear me loud and clear?"
+                if (scenarioId == "happy_birthday") {
+                    tvSubtitleText.text = "Ho ho ho! Happy Birthday, dear ${profile.name}! Santa Claus and all the reindeer at the North Pole are singing for you today! Wishing you a magical year full of joy and wonder!"
+                    SoundManager.playAssetAudio(this, "public/audio/santa_scenario_birthday.mp3", onCompletion = {
+                        runOnUiThread { startStage(CallStage.CALL_COMPLETED) }
+                    })
+                    return
                 }
-                tvSubtitleText.text = text
 
-                val audioFile = if (isVi) "public/audio/santa_vi_call_turn1.mp3" else "public/audio/santa_turn1_opening.mp3"
-                SoundManager.playAssetAudio(this, audioFile, onCompletion = {
+                if (scenarioId == "gentle_discipline") {
+                    tvSubtitleText.text = "Ho ho ho! Hello ${profile.name}, this is Santa Claus calling from the North Pole. My elves told me you can be even better at listening to mommy and daddy. Promise Santa you'll try your best, and I'll keep your special gift ready!"
+                    SoundManager.playAssetAudio(this, "public/audio/santa_scenario_discipline.mp3", onCompletion = {
+                        runOnUiThread { startStage(CallStage.CALL_COMPLETED) }
+                    })
+                    return
+                }
+
+                tvSubtitleText.text = "Ho ho ho! Hello there! Is that my little friend ${profile.name}? This is Santa Claus calling all the way from the snowy North Pole! Can you hear me loud and clear?"
+
+                SoundManager.playAssetAudio(this, "public/audio/santa_turn1_opening.mp3", onCompletion = {
                     runOnUiThread {
                         startStage(CallStage.PAUSE_GREETING)
                     }
@@ -169,15 +173,14 @@ class AudioCallActivity : Activity() {
             }
 
             CallStage.PAUSE_GREETING -> {
-                // QUÃNG NGHỈ 1: Santa lắng nghe bé gọi thưa (5s)
-                tvStageBadge.text = if (isVi) "👂 Santa đang lắng nghe bé thưa..." else "👂 Santa listening..."
+                tvStageBadge.text = "👂 Santa listening..."
                 tvStageBadge.setBackgroundColor(0xFF059669.toInt())
                 tvStageBadge.setTextColor(0xFFFFFFFF.toInt())
                 SoundManager.vibrate(this, 150)
 
-                tvPromptHint.text = if (isVi) "Bé thưa chuyện với Ông già Noel:" else "Answer Santa Claus:"
-                btnOption1.text = if (isVi) "⭐ Dạ vâng, con chào Ông ạ!" else "⭐ Yes, hello Santa!"
-                btnOption2.text = if (isVi) "🎅 Dạ con nghe rất rõ ạ!" else "🎅 I hear you loud and clear!"
+                tvPromptHint.text = "Answer Santa Claus:"
+                btnOption1.text = "⭐ Yes, hello Santa!"
+                btnOption2.text = "🎅 I hear you loud and clear!"
                 layoutChildInteraction.visibility = View.VISIBLE
 
                 startPauseCountdown(5) {
@@ -186,21 +189,14 @@ class AudioCallActivity : Activity() {
             }
 
             CallStage.TURN2_BEHAVIOR -> {
-                // LƯỢT 2: Santa hỏi thăm sinh hoạt, khen ngợi và kiểm tra Bé Ngoan
-                tvStageBadge.text = if (isVi) "🎅 Santa đang nói..." else "🎅 Santa speaking..."
+                tvStageBadge.text = "🎅 Santa speaking..."
                 tvStageBadge.setBackgroundColor(0xFFF59E0B.toInt())
                 tvStageBadge.setTextColor(0xFF1F1500.toInt())
                 layoutChildInteraction.visibility = View.GONE
 
-                val text = if (isVi) {
-                    "Ừ, ngoan lắm! Ta đang ở xưởng quà Bắc Cực, mở cuốn Sổ Bé Ngoan ra kiểm tra đây. Thế năm nay ở nhà và ở trường, cháu có ngoan ngoãn nghe lời bố mẹ, chịu khó ăn ngoan và chăm học không nào?"
-                } else {
-                    "Splendid! That is music to my ears! My big Golden Book of Good Children is open right in front of me. Tell Santa, have you been listening to mommy and daddy, finishing your meals, and being extra good this year?"
-                }
-                tvSubtitleText.text = text
+                tvSubtitleText.text = "Splendid! That is music to my ears! My big Golden Book of Good Children is open right in front of me. Tell Santa, have you been listening to mommy and daddy, finishing your meals, and being extra good this year?"
 
-                val audioFile = if (isVi) "public/audio/santa_vi_call_turn2.mp3" else "public/audio/santa_turn2_gift_ask.mp3"
-                SoundManager.playAssetAudio(this, audioFile, onCompletion = {
+                SoundManager.playAssetAudio(this, "public/audio/santa_turn2_gift_ask.mp3", onCompletion = {
                     runOnUiThread {
                         startStage(CallStage.PAUSE_BEHAVIOR)
                     }
@@ -208,15 +204,14 @@ class AudioCallActivity : Activity() {
             }
 
             CallStage.PAUSE_BEHAVIOR -> {
-                // QUÃNG NGHỈ 2: Santa lắng nghe bé khoe ngoan (5s)
-                tvStageBadge.text = if (isVi) "👂 Santa đang lắng nghe bé trả lời..." else "👂 Santa listening..."
+                tvStageBadge.text = "👂 Santa listening..."
                 tvStageBadge.setBackgroundColor(0xFF059669.toInt())
                 tvStageBadge.setTextColor(0xFFFFFFFF.toInt())
                 SoundManager.vibrate(this, 150)
 
-                tvPromptHint.text = if (isVi) "Bé trả lời Ông già Noel:" else "Tell Santa about your year:"
-                btnOption1.text = if (isVi) "🌟 Dạ con ngoan và nghe lời ạ!" else "🌟 I've been very nice!"
-                btnOption2.text = if (isVi) "😇 Dạ con hứa sẽ chăm hơn ạ!" else "😇 Trying my very best!"
+                tvPromptHint.text = "Tell Santa about your year:"
+                btnOption1.text = "🌟 I've been very nice!"
+                btnOption2.text = "😇 Trying my very best!"
                 layoutChildInteraction.visibility = View.VISIBLE
 
                 startPauseCountdown(5) {
@@ -225,21 +220,14 @@ class AudioCallActivity : Activity() {
             }
 
             CallStage.TURN3_GIFT -> {
-                // LƯỢT 3: Santa hỏi món quà ước mơ Giáng Sinh
-                tvStageBadge.text = if (isVi) "🎅 Santa đang nói..." else "🎅 Santa speaking..."
+                tvStageBadge.text = "🎅 Santa speaking..."
                 tvStageBadge.setBackgroundColor(0xFFF59E0B.toInt())
                 tvStageBadge.setTextColor(0xFF1F1500.toInt())
                 layoutChildInteraction.visibility = View.GONE
 
-                val text = if (isVi) {
-                    "Ho ho ho! Tuyệt vời lắm! Cháu thật là một em bé ngoan và hiếu thảo! Ông già Noel rất tự hào về cháu đấy! Nào, bây giờ nói nhỏ cho Ta nghe xem, Giáng Sinh năm nay cháu ao ước được nhận món quà gì nhất nào?"
-                } else {
-                    "Ho ho ho! Wonderful! Santa and the elves are so proud of you! Now tell me, my sweet child, what special gift do you wish for the most under your Christmas tree?"
-                }
-                tvSubtitleText.text = text
+                tvSubtitleText.text = "Ho ho ho! Wonderful! Santa and the elves are so proud of you! Now tell me, my sweet child, what special gift do you wish for the most under your Christmas tree?"
 
-                val audioFile = if (isVi) "public/audio/santa_vi_call_turn3.mp3" else "public/audio/santa_turn3_cookies_ask.mp3"
-                SoundManager.playAssetAudio(this, audioFile, onCompletion = {
+                SoundManager.playAssetAudio(this, "public/audio/santa_turn3_cookies_ask.mp3", onCompletion = {
                     runOnUiThread {
                         startStage(CallStage.PAUSE_GIFT)
                     }
@@ -247,16 +235,15 @@ class AudioCallActivity : Activity() {
             }
 
             CallStage.PAUSE_GIFT -> {
-                // QUÃNG NGHỈ 3: Santa lắng nghe bé nói món quà ước mơ (6s)
-                tvStageBadge.text = if (isVi) "👂 Santa đang lắng nghe quà ước mơ..." else "👂 Santa listening for wishlist..."
+                tvStageBadge.text = "👂 Santa listening for wishlist..."
                 tvStageBadge.setBackgroundColor(0xFF059669.toInt())
                 tvStageBadge.setTextColor(0xFFFFFFFF.toInt())
                 SoundManager.vibrate(this, 150)
 
-                val gift = profile.dreamGift.ifEmpty { "Bộ đồ chơi xếp hình" }
-                tvPromptHint.text = if (isVi) "Nói món quà ước mơ cho Santa:" else "Tell Santa your wish:"
-                btnOption1.text = if (isVi) "🎁 $gift" else "🎁 $gift"
-                btnOption2.text = if (isVi) "✨ Một điều ước bất ngờ!" else "✨ A surprise gift!"
+                val gift = profile.dreamGift.ifEmpty { "Lego Reindeer Sleigh" }
+                tvPromptHint.text = "Tell Santa your wish:"
+                btnOption1.text = "🎁 $gift"
+                btnOption2.text = "✨ A surprise gift!"
                 layoutChildInteraction.visibility = View.VISIBLE
 
                 startPauseCountdown(6) {
@@ -265,21 +252,14 @@ class AudioCallActivity : Activity() {
             }
 
             CallStage.TURN4_FAREWELL -> {
-                // LƯỢT 4: Santa dặn dò, hẹn gặp lại đêm Noel và chúc Giáng Sinh an lành
-                tvStageBadge.text = if (isVi) "🎅 Santa đang nói..." else "🎅 Santa speaking..."
+                tvStageBadge.text = "🎅 Santa speaking..."
                 tvStageBadge.setBackgroundColor(0xFFF59E0B.toInt())
                 tvStageBadge.setTextColor(0xFF1F1500.toInt())
                 layoutChildInteraction.visibility = View.GONE
 
-                val text = if (isVi) {
-                    "Ho ho ho! Món quà đó tuyệt vời quá! Ta đã bảo các chú lùn ghi lại ngay vào danh sách rồi nhé! Đêm Noel Ta cùng cỗ xe tuần lộc bay qua sẽ mang đến cho cháu! Nhớ là phải ngủ sớm, ăn ngoan và luôn là một em bé ngoan nhé! Chúc cháu và gia đình một mùa Giáng Sinh ấm áp và an lành! Tạm biệt cháu yêu nhé! Ho ho ho!"
-                } else {
-                    "Ho ho ho! What a marvelous wish! The elves in my workshop are wrapping that golden gift right now! Remember to go to bed early on Christmas Eve, close your eyes tight, and keep spreading joy! Merry Christmas to you and your family, goodbye, Ho ho ho!"
-                }
-                tvSubtitleText.text = text
+                tvSubtitleText.text = "Ho ho ho! What a marvelous wish! The elves in my workshop are wrapping that golden gift right now! Remember to go to bed early on Christmas Eve, close your eyes tight, and keep spreading joy! Merry Christmas to you and your family, goodbye, Ho ho ho!"
 
-                val audioFile = if (isVi) "public/audio/santa_vi_call_turn4.mp3" else "public/audio/santa_turn4_farewell.mp3"
-                SoundManager.playAssetAudio(this, audioFile, onCompletion = {
+                SoundManager.playAssetAudio(this, "public/audio/santa_turn4_farewell.mp3", onCompletion = {
                     runOnUiThread {
                         startStage(CallStage.CALL_COMPLETED)
                     }
@@ -287,16 +267,15 @@ class AudioCallActivity : Activity() {
             }
 
             CallStage.CALL_COMPLETED -> {
-                tvStageBadge.text = if (isVi) "✨ Hoàn thành cuộc gọi • Giáng Sinh an lành" else "✨ Call Completed • Merry Christmas"
+                tvStageBadge.text = "✨ Call Completed • Merry Christmas"
                 tvStageBadge.setBackgroundColor(0xFF047857.toInt())
                 tvStageBadge.setTextColor(0xFFFFFFFF.toInt())
 
-                tvPromptHint.text = if (isVi) "Bé chào tạm biệt Ông già Noel:" else "Say goodbye to Santa:"
-                btnOption1.text = if (isVi) "💖 Dạ con chào Ông, con cảm ơn Ông!" else "💖 Thank you, bye Santa!"
+                tvPromptHint.text = "Say goodbye to Santa:"
+                btnOption1.text = "💖 Thank you, bye Santa!"
                 btnOption2.visibility = View.GONE
                 layoutChildInteraction.visibility = View.VISIBLE
 
-                // Tự động kết thúc sau 3 giây
                 autoEndHandler = Handler(Looper.getMainLooper())
                 autoEndRunnable = Runnable {
                     endCallSafely()
@@ -311,9 +290,7 @@ class AudioCallActivity : Activity() {
         pauseTimer = object : CountDownTimer((seconds * 1000).toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val secLeft = (millisUntilFinished / 1000).toInt() + 1
-                val isVi = profile.language == "vi"
-                val prefix = if (isVi) "👂 Santa đang lắng nghe... (${secLeft}s)" else "👂 Santa listening... (${secLeft}s)"
-                tvStageBadge.text = prefix
+                tvStageBadge.text = "👂 Santa listening... (${secLeft}s)"
             }
 
             override fun onFinish() {

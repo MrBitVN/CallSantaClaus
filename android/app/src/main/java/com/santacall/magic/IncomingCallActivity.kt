@@ -48,22 +48,11 @@ class IncomingCallActivity : Activity() {
         btnDeclineCall = findViewById(R.id.btnDeclineCall)
         btnAcceptCall = findViewById(R.id.btnAcceptCall)
 
-        val isVi = profile.language == "vi"
-        tvIncomingTitle.text = if (isVi) {
-            if (callType == "video") "CUỘC GỌI FACETIME TỪ BẮC CỰC" else "CUỘC GỌI ĐẾN TỪ BẮC CỰC"
-        } else {
-            if (callType == "video") "FACETIME FROM NORTH POLE" else "INCOMING CALL FROM NORTH POLE"
-        }
-
-        tvIncomingCallerName.text = if (isVi) "Ông Già Noel" else "Santa Claus"
-        tvSpecialForChild.text = if (isVi) {
-            "🎅 Cuộc gọi dành riêng cho ${profile.name} (${profile.age} tuổi)!"
-        } else {
-            "🎅 Special call for ${profile.name} (${profile.age} yo)!"
-        }
-
-        tvDeclineLabel.text = if (isVi) "Từ chối" else "Decline"
-        tvAcceptLabel.text = if (isVi) "Trả lời" else "Accept"
+        tvIncomingTitle.text = if (callType == "video") "FACETIME FROM NORTH POLE" else "INCOMING CALL FROM NORTH POLE"
+        tvIncomingCallerName.text = "Santa Claus"
+        tvSpecialForChild.text = "🎅 Special call for ${profile.name} (${profile.age} yo)!"
+        tvDeclineLabel.text = "Decline"
+        tvAcceptLabel.text = "Accept"
     }
 
     private fun setupListeners() {

@@ -15,7 +15,6 @@ class SantaChatViewController: UIViewController, UITextFieldDelegate {
     private let backButton = UIButton(type: .system)
     private let titleLabel = UILabel()
     private let statusLabel = UILabel()
-    private let avatarImageView = UIImageView()
 
     private let tableView = UITableView()
     private let quickRepliesScrollView = UIScrollView()
@@ -29,44 +28,36 @@ class SantaChatViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 0.05, green: 0.04, blue: 0.04, alpha: 1.0)
+        view.backgroundColor = UIColor(red: 10/255, green: 7/255, blue: 8/255, alpha: 1.0) // #0A0708
         setupUI()
         setupKeyboardObservers()
         loadInitialMessages()
     }
 
     private func setupUI() {
-        // Header
-        headerView.backgroundColor = UIColor(red: 0.12, green: 0.08, blue: 0.08, alpha: 1.0)
+        // Header (#1C1414) matching Android
+        headerView.backgroundColor = UIColor(red: 28/255, green: 20/255, blue: 20/255, alpha: 1.0)
         headerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(headerView)
 
-        backButton.setTitle("‹", for: .normal)
-        backButton.titleLabel?.font = UIFont.systemFont(ofSize: 36, weight: .regular)
-        backButton.setTitleColor(.white, for: .normal)
+        backButton.setTitle("←", for: .normal)
+        backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        backButton.setTitleColor(UIColor(red: 229/255, green: 231/255, blue: 235/255, alpha: 1.0), for: .normal)
+        backButton.backgroundColor = UIColor(red: 38/255, green: 34/255, blue: 34/255, alpha: 1.0) // #262222
+        backButton.layer.cornerRadius = 8
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
         headerView.addSubview(backButton)
 
-        avatarImageView.image = UIImage(named: "santa_avatar") ?? UIImage(named: "Splash")
-        avatarImageView.contentMode = .scaleAspectFill
-        avatarImageView.layer.cornerRadius = 20
-        avatarImageView.clipsToBounds = true
-        avatarImageView.layer.borderWidth = 1.5
-        avatarImageView.layer.borderColor = UIColor(red: 0.98, green: 0.75, blue: 0.14, alpha: 1.0).cgColor
-        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        headerView.addSubview(avatarImageView)
-
-        let isVi = profile.language == "vi"
-        titleLabel.text = isVi ? "Ông Già Noel" : "Santa Claus"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        titleLabel.textColor = UIColor(red: 0.99, green: 0.95, blue: 0.78, alpha: 1.0)
+        titleLabel.text = "Santa Claus 🎅"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        titleLabel.textColor = UIColor(red: 254/255, green: 243/255, blue: 199/255, alpha: 1.0) // #FEF3C7
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(titleLabel)
 
-        statusLabel.text = isVi ? "Đang trực tuyến tại Bắc Cực • Tuyết rơi" : "Online at North Pole • Snowing"
+        statusLabel.text = "🟢 Online at North Pole"
         statusLabel.font = UIFont.systemFont(ofSize: 11)
-        statusLabel.textColor = UIColor(red: 0.43, green: 0.91, blue: 0.72, alpha: 1.0)
+        statusLabel.textColor = UIColor(red: 134/255, green: 239/255, blue: 172/255, alpha: 1.0) // #86EFAC
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(statusLabel)
 
@@ -81,48 +72,48 @@ class SantaChatViewController: UIViewController, UITextFieldDelegate {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tableView.addGestureRecognizer(tapGesture)
 
-        // Quick Reply Suggestions Bar
+        // Quick Reply Chips matching Android
         quickRepliesScrollView.showsHorizontalScrollIndicator = false
         quickRepliesScrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(quickRepliesScrollView)
 
         quickRepliesStack.axis = .horizontal
-        quickRepliesStack.spacing = 8
+        quickRepliesStack.spacing = 6
         quickRepliesStack.translatesAutoresizingMaskIntoConstraints = false
         quickRepliesScrollView.addSubview(quickRepliesStack)
 
         setupQuickReplies()
 
-        // Input Container
-        inputContainerView.backgroundColor = UIColor(red: 0.12, green: 0.09, blue: 0.09, alpha: 1.0)
-        inputContainerView.layer.borderWidth = 1
-        inputContainerView.layer.borderColor = UIColor(white: 0.2, alpha: 1.0).cgColor
-        inputContainerView.layer.cornerRadius = 24
+        // Input Container (#161212)
+        inputContainerView.backgroundColor = UIColor(red: 22/255, green: 18/255, blue: 18/255, alpha: 1.0)
         inputContainerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(inputContainerView)
 
-        messageTextField.placeholder = isVi ? "Nhắn gì cho Ông già Noel..." : "Type message for Santa..."
-        messageTextField.textColor = .white
-        messageTextField.font = UIFont.systemFont(ofSize: 15)
         messageTextField.attributedPlaceholder = NSAttributedString(
-            string: isVi ? "Nhắn gì cho Ông già Noel..." : "Type message for Santa...",
-            attributes: [.foregroundColor: UIColor.lightGray]
+            string: "Type a message to Santa...",
+            attributes: [.foregroundColor: UIColor(red: 156/255, green: 163/255, blue: 175/255, alpha: 1.0)]
         )
-        messageTextField.delegate = self
+        messageTextField.textColor = .white
+        messageTextField.backgroundColor = UIColor(red: 38/255, green: 34/255, blue: 34/255, alpha: 1.0) // #262222
+        messageTextField.layer.cornerRadius = 8
+        messageTextField.font = UIFont.systemFont(ofSize: 13)
         messageTextField.returnKeyType = .send
+        messageTextField.delegate = self
+        messageTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 44))
+        messageTextField.leftViewMode = .always
         messageTextField.translatesAutoresizingMaskIntoConstraints = false
         inputContainerView.addSubview(messageTextField)
 
-        sendButton.setTitle("➤", for: .normal)
-        sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        sendButton.setTitle("Send", for: .normal)
         sendButton.setTitleColor(.white, for: .normal)
-        sendButton.backgroundColor = UIColor(red: 0.86, green: 0.15, blue: 0.15, alpha: 1.0)
-        sendButton.layer.cornerRadius = 18
+        sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        sendButton.backgroundColor = UIColor(red: 220/255, green: 38/255, blue: 38/255, alpha: 1.0) // #DC2626
+        sendButton.layer.cornerRadius = 8
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         sendButton.addTarget(self, action: #selector(sendMessageTapped), for: .touchUpInside)
         inputContainerView.addSubview(sendButton)
 
-        inputBottomConstraint = inputContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+        inputBottomConstraint = inputContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
 
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -130,88 +121,71 @@ class SantaChatViewController: UIViewController, UITextFieldDelegate {
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 60),
 
-            backButton.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 12),
+            backButton.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
             backButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-            backButton.widthAnchor.constraint(equalToConstant: 30),
+            backButton.widthAnchor.constraint(equalToConstant: 44),
+            backButton.heightAnchor.constraint(equalToConstant: 36),
 
-            avatarImageView.leadingAnchor.constraint(equalTo: backButton.trailingAnchor, constant: 6),
-            avatarImageView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 40),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 40),
+            titleLabel.leadingAnchor.constraint(equalTo: backButton.trailingAnchor, constant: 12),
+            titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 12),
 
-            titleLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 10),
-            titleLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor, constant: 2),
-
-            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 10),
-            statusLabel.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: -2),
+            statusLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            statusLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
 
             tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: quickRepliesScrollView.topAnchor, constant: -8),
+            tableView.bottomAnchor.constraint(equalTo: quickRepliesScrollView.topAnchor, constant: -6),
 
             quickRepliesScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
             quickRepliesScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            quickRepliesScrollView.bottomAnchor.constraint(equalTo: inputContainerView.topAnchor, constant: -8),
-            quickRepliesScrollView.heightAnchor.constraint(equalToConstant: 36),
+            quickRepliesScrollView.bottomAnchor.constraint(equalTo: inputContainerView.topAnchor, constant: -6),
+            quickRepliesScrollView.heightAnchor.constraint(equalToConstant: 38),
 
             quickRepliesStack.topAnchor.constraint(equalTo: quickRepliesScrollView.topAnchor),
             quickRepliesStack.bottomAnchor.constraint(equalTo: quickRepliesScrollView.bottomAnchor),
             quickRepliesStack.leadingAnchor.constraint(equalTo: quickRepliesScrollView.leadingAnchor),
             quickRepliesStack.trailingAnchor.constraint(equalTo: quickRepliesScrollView.trailingAnchor),
-            quickRepliesStack.heightAnchor.constraint(equalTo: quickRepliesScrollView.heightAnchor),
 
-            inputContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            inputContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            inputContainerView.heightAnchor.constraint(equalToConstant: 48),
+            inputContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            inputContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            inputContainerView.heightAnchor.constraint(equalToConstant: 64),
             inputBottomConstraint!,
 
-            messageTextField.leadingAnchor.constraint(equalTo: inputContainerView.leadingAnchor, constant: 16),
-            messageTextField.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -8),
+            messageTextField.leadingAnchor.constraint(equalTo: inputContainerView.leadingAnchor, constant: 10),
             messageTextField.centerYAnchor.constraint(equalTo: inputContainerView.centerYAnchor),
+            messageTextField.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -8),
+            messageTextField.heightAnchor.constraint(equalToConstant: 44),
 
-            sendButton.trailingAnchor.constraint(equalTo: inputContainerView.trailingAnchor, constant: -6),
+            sendButton.trailingAnchor.constraint(equalTo: inputContainerView.trailingAnchor, constant: -10),
             sendButton.centerYAnchor.constraint(equalTo: inputContainerView.centerYAnchor),
-            sendButton.widthAnchor.constraint(equalToConstant: 36),
-            sendButton.heightAnchor.constraint(equalToConstant: 36),
+            sendButton.widthAnchor.constraint(equalToConstant: 70),
+            sendButton.heightAnchor.constraint(equalToConstant: 44),
         ])
     }
 
     private func setupQuickReplies() {
-        let isVi = profile.language == "vi"
-        let replies = isVi ? [
-            "🎁 Cháu muốn xin quà!",
-            "❄️ Bắc Cực có lạnh không?",
-            "🦌 Tuần lộc đang làm gì?",
-            "⭐ Cháu hứa nghe lời bố mẹ!",
-            "🎅 Chúc Santa Giáng Sinh vui vẻ!"
-        ] : [
-            "🎁 I want a Christmas gift!",
-            "❄️ Is the North Pole cold?",
-            "🦌 How are the reindeer?",
-            "⭐ I promise to be good!",
-            "🎅 Merry Christmas Santa!"
+        let replies = [
+            "🎁 What gift is Santa making?",
+            "🦌 How is Rudolph doing?",
+            "⭐ Am I on the Nice List?"
         ]
 
         for text in replies {
             let btn = UIButton(type: .system)
             btn.setTitle(text, for: .normal)
-            btn.setTitleColor(UIColor(red: 0.99, green: 0.95, blue: 0.78, alpha: 1.0), for: .normal)
-            btn.backgroundColor = UIColor(red: 0.18, green: 0.13, blue: 0.13, alpha: 1.0)
-            btn.layer.cornerRadius = 16
-            btn.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-            btn.contentEdgeInsets = UIEdgeInsets(top: 6, left: 14, bottom: 6, right: 14)
+            btn.setTitleColor(UIColor(red: 253/255, green: 230/255, blue: 138/255, alpha: 1.0), for: .normal) // #FDE68A
+            btn.backgroundColor = UIColor(red: 38/255, green: 34/255, blue: 34/255, alpha: 1.0) // #262222
+            btn.layer.cornerRadius = 8
+            btn.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .medium)
+            btn.contentEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
             btn.addTarget(self, action: #selector(quickReplyTapped(_:)), for: .touchUpInside)
             quickRepliesStack.addArrangedSubview(btn)
         }
     }
 
     private func loadInitialMessages() {
-        let isVi = profile.language == "vi"
-        let welcomeText = isVi
-            ? "Ho ho ho! Chào \(profile.name) yêu quý! Ta là Ông già Noel đây! Giáng Sinh này bé có ước muốn hay tâm sự gì cứ nhắn cho Ta nhé! 🎅✨"
-            : "Ho ho ho! Hello dear \(profile.name)! This is Santa Claus from the North Pole! Send me your Christmas wishes and questions! 🎅✨"
-
+        let welcomeText = "Ho ho ho! Hello dear \(profile.name)! This is Santa Claus from the North Pole! Send me your Christmas wishes and questions anytime! 🎅✨"
         messages.append(ChatMessage(isSanta: true, text: welcomeText, time: currentTimeString()))
         tableView.reloadData()
     }
@@ -240,7 +214,6 @@ class SantaChatViewController: UIViewController, UITextFieldDelegate {
         scrollToBottom()
         SoundManager.shared.triggerHaptic(style: .light)
 
-        // Santa typing and reply after 1.2s
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { [weak self] in
             guard let self = self else { return }
             let reply = self.generateSantaResponse(for: text)
@@ -252,31 +225,26 @@ class SantaChatViewController: UIViewController, UITextFieldDelegate {
     }
 
     private func generateSantaResponse(for userText: String) -> String {
-        let isVi = profile.language == "vi"
         let lower = userText.lowercased()
 
-        if isVi {
-            if lower.contains("quà") || lower.contains("xin") {
-                return "Ho ho ho! Ta đã ghi món quà '\(profile.dreamGift)' vào cuốn sổ vàng của Ta rồi! \(profile.name) nhớ ngoan ngoãn và nghe lời bố mẹ nhé!"
-            } else if lower.contains("lạnh") || lower.contains("bắc cực") {
-                return "Ở Bắc Cực hiện đang là -18°C và tuyết rơi trắng xóa khắp các xưởng đồ chơi của các chú lùn elf đó bé yêu! ❄️☃️"
-            } else if lower.contains("tuần lộc") || lower.contains("rudolph") {
-                return "Chú tuần lộc mũi đỏ Rudolph đang ăn táo ngọt và tập bay cỗ xe để chuẩn bị bay đến tặng quà cho \(profile.name) đêm Noel này đó! 🦌✨"
-            } else if lower.contains("nghe lời") || lower.contains("hứa") {
-                return "Tuyệt vời lắm! Ta rất tự hào về \(profile.name)! Ta sẽ xếp bé vào vị trí danh dự trong Danh Sách Bé Ngoan Xuất Sắc nhất năm nay! ⭐🎄"
+        if lower.contains("gift") || lower.contains("present") || lower.contains("want") || lower.contains("wish") || lower.contains("toy") {
+            return "Ho ho ho! The elves in my North Pole workshop are wrapping '\(profile.dreamGift)' with a golden ribbon just for \(profile.name)! Remember to eat well and go to bed early! 🎁✨"
+        } else if lower.contains("reindeer") || lower.contains("rudolph") || lower.contains("sleigh") {
+            return "Ho ho ho! Rudolph just finished munching on crunchy sweet carrots, and his red nose is shining bright for our magical Christmas Eve flight! 🦌✨"
+        } else if lower.contains("nice") || lower.contains("good") || lower.contains("list") || lower.contains("promise") {
+            if profile.isNice {
+                return "Ho ho ho! I just checked my Golden Nice List, and \(profile.name)'s name is shining at the very top! Santa is so proud of you! ⭐🎄"
             } else {
-                return "Ho ho ho! Ông già Noel nghe rõ rồi! Bé \(profile.name) nhớ ngủ sớm, ăn ngoan và luôn mỉm cười nhé, Ta luôn dõi theo bé! 🎅❤️"
+                return "Ho ho ho! Keep listening to mommy and daddy and doing your best, \(profile.name)! Santa believes in you and knows you'll earn your spot on the Nice List! ⭐"
             }
+        } else if lower.contains("cold") || lower.contains("snow") || lower.contains("north pole") || lower.contains("weather") {
+            return "It is -18°C here at the North Pole with fluffy white snow falling all over the elf workshop! Good thing Mrs. Claus made hot cocoa! ❄️☕"
+        } else if lower.contains("hello") || lower.contains("hi") || lower.contains("hey") {
+            return "Ho ho ho! Hello there, \(profile.name)! It makes Santa so happy to hear from you! How has your day been? 🎅❤️"
+        } else if lower.contains("merry christmas") || lower.contains("love") || lower.contains("thank") {
+            return "Ho ho ho! Merry Christmas to you and your wonderful family, \(profile.name)! Sending warm North Pole hugs! 🎄❤️"
         } else {
-            if lower.contains("gift") || lower.contains("want") || lower.contains("present") {
-                return "Ho ho ho! I have noted down '\(profile.dreamGift)' in my golden ledger! Keep being good and helpful, dear \(profile.name)!"
-            } else if lower.contains("cold") || lower.contains("north pole") {
-                return "It is -18°C here at the North Pole and fluffy white snow is falling all over our elf workshops! ❄️☃️"
-            } else if lower.contains("reindeer") || lower.contains("rudolph") {
-                return "Rudolph the red-nosed reindeer is munching on sweet carrots and polishing the magic sleigh! 🦌✨"
-            } else {
-                return "Ho ho ho! That warms my heart! Have a wonderful magical Christmas season, \(profile.name)! 🎅✨"
-            }
+            return "Ho ho ho! Your message warms my jolly heart, \(profile.name)! Keep smiling, be kind, and have a magical Christmas season! 🎅✨"
         }
     }
 
@@ -300,30 +268,26 @@ class SantaChatViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
 
+    // MARK: - Keyboard Handling
     private func setupKeyboardObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    @objc private func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            inputBottomConstraint?.constant = -keyboardSize.height + view.safeAreaInsets.bottom - 4
-            UIView.animate(withDuration: 0.3) {
-                self.view.layoutIfNeeded()
-            }
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        if let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            inputBottomConstraint?.constant = -(frame.height - view.safeAreaInsets.bottom)
+            UIView.animate(withDuration: 0.25) { self.view.layoutIfNeeded() }
             scrollToBottom()
         }
     }
 
-    @objc private func keyboardWillHide(notification: NSNotification) {
-        inputBottomConstraint?.constant = -8
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        inputBottomConstraint?.constant = 0
+        UIView.animate(withDuration: 0.25) { self.view.layoutIfNeeded() }
     }
 }
 
-// MARK: - UITableViewDataSource
 extension SantaChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
@@ -332,37 +296,36 @@ extension SantaChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatBubbleCell", for: indexPath) as! ChatBubbleCell
         let msg = messages[indexPath.row]
-        cell.configure(message: msg.text, time: msg.time, isSanta: msg.isSanta)
+        cell.configure(isSanta: msg.isSanta, text: msg.text, time: msg.time)
         return cell
     }
 }
 
-// MARK: - ChatBubbleCell
+// MARK: - Custom Chat Bubble Cell (Matches Android colors)
 class ChatBubbleCell: UITableViewCell {
-
     private let bubbleView = UIView()
     private let messageLabel = UILabel()
     private let timeLabel = UILabel()
 
-    private var leadingConstraint: NSLayoutConstraint?
-    private var trailingConstraint: NSLayoutConstraint?
+    private var leadingConstraint: NSLayoutConstraint!
+    private var trailingConstraint: NSLayoutConstraint!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
         selectionStyle = .none
 
-        bubbleView.layer.cornerRadius = 16
+        bubbleView.layer.cornerRadius = 12
         bubbleView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(bubbleView)
 
         messageLabel.numberOfLines = 0
-        messageLabel.font = UIFont.systemFont(ofSize: 14)
+        messageLabel.font = UIFont.systemFont(ofSize: 13)
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         bubbleView.addSubview(messageLabel)
 
         timeLabel.font = UIFont.systemFont(ofSize: 10)
-        timeLabel.textColor = UIColor(white: 0.8, alpha: 0.8)
+        timeLabel.textColor = UIColor(white: 1.0, alpha: 0.55)
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         bubbleView.addSubview(timeLabel)
 
@@ -375,36 +338,31 @@ class ChatBubbleCell: UITableViewCell {
             bubbleView.widthAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, multiplier: 0.78),
 
             messageLabel.topAnchor.constraint(equalTo: bubbleView.topAnchor, constant: 10),
-            messageLabel.leadingAnchor.constraint(equalTo: bubbleView.leadingAnchor, constant: 14),
-            messageLabel.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor, constant: -14),
+            messageLabel.leadingAnchor.constraint(equalTo: bubbleView.leadingAnchor, constant: 12),
+            messageLabel.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor, constant: -12),
 
             timeLabel.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 4),
             timeLabel.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor, constant: -12),
-            timeLabel.bottomAnchor.constraint(equalTo: bubbleView.bottomAnchor, constant: -8)
+            timeLabel.bottomAnchor.constraint(equalTo: bubbleView.bottomAnchor, constant: -8),
         ])
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-    func configure(message: String, time: String, isSanta: Bool) {
-        messageLabel.text = message
+    func configure(isSanta: Bool, text: String, time: String) {
+        messageLabel.text = text
         timeLabel.text = time
 
         if isSanta {
-            bubbleView.backgroundColor = UIColor(red: 0.18, green: 0.12, blue: 0.12, alpha: 1.0)
-            bubbleView.layer.borderWidth = 1
-            bubbleView.layer.borderColor = UIColor(red: 0.98, green: 0.75, blue: 0.14, alpha: 0.4).cgColor
-            messageLabel.textColor = UIColor(red: 0.99, green: 0.95, blue: 0.78, alpha: 1.0)
-            leadingConstraint?.isActive = true
-            trailingConstraint?.isActive = false
+            bubbleView.backgroundColor = UIColor(red: 39/255, green: 25/255, blue: 25/255, alpha: 1.0) // #271919
+            messageLabel.textColor = UIColor(red: 254/255, green: 243/255, blue: 199/255, alpha: 1.0) // #FEF3C7
+            leadingConstraint.isActive = true
+            trailingConstraint.isActive = false
         } else {
-            bubbleView.backgroundColor = UIColor(red: 0.05, green: 0.45, blue: 0.32, alpha: 1.0)
-            bubbleView.layer.borderWidth = 0
+            bubbleView.backgroundColor = UIColor(red: 6/255, green: 95/255, blue: 70/255, alpha: 1.0) // #065F46
             messageLabel.textColor = .white
-            leadingConstraint?.isActive = false
-            trailingConstraint?.isActive = true
+            leadingConstraint.isActive = false
+            trailingConstraint.isActive = true
         }
     }
 }

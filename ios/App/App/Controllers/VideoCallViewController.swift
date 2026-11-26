@@ -82,36 +82,34 @@ class VideoCallViewController: UIViewController {
     }
 
     private func setupUI() {
-        // Top Overlay
         topOverlayView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(topOverlayView)
 
         timerLabel.text = "00:00"
         timerLabel.textColor = .white
-        timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 15, weight: .bold)
-        timerLabel.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        timerLabel.layer.cornerRadius = 8
+        timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .bold)
+        timerLabel.backgroundColor = UIColor(white: 0, alpha: 0.4)
+        timerLabel.layer.cornerRadius = 6
         timerLabel.clipsToBounds = true
         timerLabel.textAlignment = .center
         timerLabel.translatesAutoresizingMaskIntoConstraints = false
         topOverlayView.addSubview(timerLabel)
 
-        let isVi = profile.language == "vi"
-        liveBadge.text = isVi ? "🔴 TRỰC TIẾP TỪ BẮC CỰC" : "🔴 NORTH POLE LIVE"
-        liveBadge.textColor = UIColor(red: 1.0, green: 0.35, blue: 0.35, alpha: 1.0)
+        liveBadge.text = "  🔴 NORTH POLE LIVE  "
+        liveBadge.textColor = UIColor(red: 239/255, green: 68/255, blue: 68/255, alpha: 1.0) // #EF4444
         liveBadge.font = UIFont.boldSystemFont(ofSize: 11)
         liveBadge.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        liveBadge.layer.cornerRadius = 8
+        liveBadge.layer.cornerRadius = 6
         liveBadge.clipsToBounds = true
         liveBadge.textAlignment = .center
         liveBadge.translatesAutoresizingMaskIntoConstraints = false
         topOverlayView.addSubview(liveBadge)
 
-        // PIP Card (Child camera preview)
-        pipCard.backgroundColor = UIColor(white: 0.15, alpha: 0.9)
+        // PIP Card (100x140 matching Android)
+        pipCard.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 0.95)
         pipCard.layer.cornerRadius = 16
         pipCard.layer.borderWidth = 2
-        pipCard.layer.borderColor = UIColor(white: 1.0, alpha: 0.4).cgColor
+        pipCard.layer.borderColor = UIColor(white: 1.0, alpha: 0.35).cgColor
         pipCard.clipsToBounds = true
         pipCard.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(pipCard)
@@ -119,40 +117,38 @@ class VideoCallViewController: UIViewController {
         pipPlaceholderLabel.text = "\(profile.name)\n(Camera)"
         pipPlaceholderLabel.numberOfLines = 2
         pipPlaceholderLabel.textAlignment = .center
-        pipPlaceholderLabel.textColor = .lightGray
+        pipPlaceholderLabel.textColor = UIColor(red: 163/255, green: 163/255, blue: 163/255, alpha: 1.0)
         pipPlaceholderLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         pipPlaceholderLabel.translatesAutoresizingMaskIntoConstraints = false
         pipCard.addSubview(pipPlaceholderLabel)
 
         // Bottom Controls
         controlsStack.axis = .horizontal
-        controlsStack.spacing = 30
+        controlsStack.spacing = 28
         controlsStack.alignment = .center
         controlsStack.distribution = .equalCentering
         controlsStack.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(controlsStack)
 
-        // Mute Button
         muteButton.backgroundColor = UIColor(white: 0.2, alpha: 0.8)
         muteButton.setTitle("🎙️", for: .normal)
         muteButton.titleLabel?.font = UIFont.systemFont(ofSize: 22)
-        muteButton.layer.cornerRadius = 30
+        muteButton.layer.cornerRadius = 28
         muteButton.translatesAutoresizingMaskIntoConstraints = false
         muteButton.addTarget(self, action: #selector(toggleMute), for: .touchUpInside)
 
-        // End Call Button
-        endCallButton.backgroundColor = UIColor(red: 0.88, green: 0.15, blue: 0.15, alpha: 1.0)
-        endCallButton.setTitle("📞", for: .normal)
-        endCallButton.titleLabel?.font = UIFont.systemFont(ofSize: 28)
-        endCallButton.layer.cornerRadius = 38
+        endCallButton.backgroundColor = UIColor(red: 220/255, green: 38/255, blue: 38/255, alpha: 1.0) // #DC2626
+        endCallButton.setTitle("✕", for: .normal)
+        endCallButton.setTitleColor(.white, for: .normal)
+        endCallButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 26)
+        endCallButton.layer.cornerRadius = 35
         endCallButton.translatesAutoresizingMaskIntoConstraints = false
         endCallButton.addTarget(self, action: #selector(endCall), for: .touchUpInside)
 
-        // Flip Camera Button
         flipCameraButton.backgroundColor = UIColor(white: 0.2, alpha: 0.8)
         flipCameraButton.setTitle("🔄", for: .normal)
         flipCameraButton.titleLabel?.font = UIFont.systemFont(ofSize: 22)
-        flipCameraButton.layer.cornerRadius = 30
+        flipCameraButton.layer.cornerRadius = 28
         flipCameraButton.translatesAutoresizingMaskIntoConstraints = false
         flipCameraButton.addTarget(self, action: #selector(flipCamera), for: .touchUpInside)
 
@@ -162,24 +158,23 @@ class VideoCallViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             topOverlayView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            topOverlayView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            topOverlayView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            topOverlayView.heightAnchor.constraint(equalToConstant: 40),
+            topOverlayView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            topOverlayView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            topOverlayView.heightAnchor.constraint(equalToConstant: 36),
 
             timerLabel.leadingAnchor.constraint(equalTo: topOverlayView.leadingAnchor),
             timerLabel.centerYAnchor.constraint(equalTo: topOverlayView.centerYAnchor),
-            timerLabel.widthAnchor.constraint(equalToConstant: 74),
-            timerLabel.heightAnchor.constraint(equalToConstant: 32),
+            timerLabel.widthAnchor.constraint(equalToConstant: 68),
+            timerLabel.heightAnchor.constraint(equalToConstant: 28),
 
             liveBadge.trailingAnchor.constraint(equalTo: topOverlayView.trailingAnchor),
             liveBadge.centerYAnchor.constraint(equalTo: topOverlayView.centerYAnchor),
-            liveBadge.widthAnchor.constraint(equalToConstant: 160),
-            liveBadge.heightAnchor.constraint(equalToConstant: 32),
+            liveBadge.heightAnchor.constraint(equalToConstant: 28),
 
             pipCard.topAnchor.constraint(equalTo: topOverlayView.bottomAnchor, constant: 16),
-            pipCard.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            pipCard.widthAnchor.constraint(equalToConstant: 105),
-            pipCard.heightAnchor.constraint(equalToConstant: 150),
+            pipCard.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            pipCard.widthAnchor.constraint(equalToConstant: 100),
+            pipCard.heightAnchor.constraint(equalToConstant: 140),
 
             pipPlaceholderLabel.centerXAnchor.constraint(equalTo: pipCard.centerXAnchor),
             pipPlaceholderLabel.centerYAnchor.constraint(equalTo: pipCard.centerYAnchor),
@@ -187,14 +182,14 @@ class VideoCallViewController: UIViewController {
             controlsStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             controlsStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -36),
 
-            muteButton.widthAnchor.constraint(equalToConstant: 60),
-            muteButton.heightAnchor.constraint(equalToConstant: 60),
+            muteButton.widthAnchor.constraint(equalToConstant: 56),
+            muteButton.heightAnchor.constraint(equalToConstant: 56),
 
-            endCallButton.widthAnchor.constraint(equalToConstant: 76),
-            endCallButton.heightAnchor.constraint(equalToConstant: 76),
+            endCallButton.widthAnchor.constraint(equalToConstant: 70),
+            endCallButton.heightAnchor.constraint(equalToConstant: 70),
 
-            flipCameraButton.widthAnchor.constraint(equalToConstant: 60),
-            flipCameraButton.heightAnchor.constraint(equalToConstant: 60),
+            flipCameraButton.widthAnchor.constraint(equalToConstant: 56),
+            flipCameraButton.heightAnchor.constraint(equalToConstant: 56),
         ])
     }
 
@@ -254,7 +249,8 @@ class VideoCallViewController: UIViewController {
 
     @objc private func toggleMute() {
         isMuted.toggle()
-        muteButton.backgroundColor = isMuted ? UIColor(red: 0.8, green: 0.2, blue: 0.2, alpha: 0.8) : UIColor(white: 0.2, alpha: 0.8)
+        player?.isMuted = isMuted
+        muteButton.backgroundColor = isMuted ? UIColor(red: 220/255, green: 38/255, blue: 38/255, alpha: 0.85) : UIColor(white: 0.2, alpha: 0.8)
         SoundManager.shared.triggerHaptic(style: .medium)
     }
 

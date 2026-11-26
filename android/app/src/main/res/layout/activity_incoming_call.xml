@@ -24,7 +24,7 @@
             android:id="@+id/tvIncomingTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CUỘC GỌI ĐẾN TỪ BẮC CỰC"
+            android:text="INCOMING CALL FROM NORTH POLE"
             android:textColor="#FBBF24"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Ông Già Noel"
+            android:text="Santa Claus"
             android:textColor="#FEF3C7"
             android:textSize="32sp"
             android:textStyle="bold" />
@@ -59,13 +59,13 @@
             android:paddingEnd="14dp"
             android:paddingTop="6dp"
             android:paddingBottom="6dp"
-            android:text="🎅 Cuộc gọi dành riêng cho Bé Yêu (5 tuổi)"
+            android:text="🎅 Special call for Little Star (5 yo)!"
             android:textColor="#FDE68A"
             android:textSize="12sp"
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Center Avatar with Pulse Ring -->
+    <!-- Center Avatar -->
     <RelativeLayout
         android:layout_width="160dp"
         android:layout_height="160dp"
@@ -105,14 +105,14 @@
                 android:background="#DC2626"
                 android:src="@android:drawable/ic_menu_close_clear_cancel"
                 android:tint="#FFFFFF"
-                android:contentDescription="Từ chối" />
+                android:contentDescription="Decline" />
 
             <TextView
                 android:id="@+id/tvDeclineLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Từ chối"
+                android:text="Decline"
                 android:textColor="#E5E7EB"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -133,14 +133,14 @@
                 android:background="#16A34A"
                 android:src="@android:drawable/stat_sys_speakerphone"
                 android:tint="#FFFFFF"
-                android:contentDescription="Trả lời" />
+                android:contentDescription="Accept" />
 
             <TextView
                 android:id="@+id/tvAcceptLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Trả lời"
+                android:text="Accept"
                 android:textColor="#86EFAC"
                 android:textSize="13sp"
                 android:textStyle="bold" />

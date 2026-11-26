@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="Bắc Cực: -18°C • Tuyết rơi nhẹ"
+                    android:text="North Pole: -18°C • Light Snow ❄️"
                     android:textColor="#6EE7B7"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:backgroundTint="#271919"
-                android:text="🔒 Phụ Huynh"
+                android:text="🔒 Parents"
                 android:textColor="#FBBF24"
                 android:textSize="11sp"
                 android:textStyle="bold" />
@@ -74,7 +74,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="🎅 Santa đang chuẩn bị gọi... Chuông sẽ reo sau 10s!"
+                android:text="🎅 Santa is preparing to call... Rings in 10s!"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:backgroundTint="#000000"
-                android:text="Hủy"
+                android:text="Cancel"
                 android:textColor="#FFFFFF"
                 android:textSize="10sp" />
         </LinearLayout>
@@ -121,7 +121,7 @@
                         android:id="@+id/tvHeroGreeting"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Chào Bé Yêu! 🎅"
+                        android:text="Hello Little Star! 🎅"
                         android:textColor="#FEF3C7"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -131,7 +131,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="Ông già Noel đang rất muốn gọi điện cho bé!"
+                        android:text="Santa is eager to speak with you from the North Pole!"
                         android:textColor="#D1D5DB"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -144,7 +144,7 @@
                 android:layout_marginTop="12dp"
                 android:background="#064E3B"
                 android:padding="8dp"
-                android:text="⭐ Tên bé: DANH SÁCH BÉ NGOAN XUẤT SẮC"
+                android:text="⭐ CHILD STATUS: OFFICIAL NICE LIST"
                 android:textColor="#6EE7B7"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -157,7 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:text="KẾT NỐI VỚI ÔNG GIÀ NOEL"
+            android:text="CONNECT WITH SANTA CLAUS"
             android:textColor="#FBBF24"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -184,7 +184,7 @@
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
-            <!-- Voice Call (Multi-turn Gọi Thưa) -->
+            <!-- Voice Call -->
             <Button
                 android:id="@+id/btnMainVoiceCall"
                 android:layout_width="0dp"
@@ -192,7 +192,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
                 android:backgroundTint="#059669"
-                android:text="📞 Gọi Thoại\nGọi - Thưa Đa Lượt"
+                android:text="📞 Voice Call\n4-Turn Interactive"
                 android:textColor="#FFFFFF"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -212,7 +212,7 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="6dp"
                 android:backgroundTint="#271919"
-                android:text="🎙️ Hộp Thư Thoại"
+                android:text="🎙️ Voicemail"
                 android:textColor="#FEF3C7"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -225,7 +225,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
                 android:backgroundTint="#271919"
-                android:text="💬 Nhắn Tin Santa"
+                android:text="💬 Chat with Santa"
                 android:textColor="#FEF3C7"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -238,7 +238,7 @@
             android:layout_height="56dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="#271919"
-            android:text="🎬 Video Lời Nhắn Từ Santa (Sinh Nhật, Sổ Ngoan...)"
+            android:text="🎬 Video Messages from Santa (Birthday, Nice List...)"
             android:textColor="#FBBF24"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -249,13 +249,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
-            android:text="KỊCH BẢN CUỘC GỌI ĐẶC BIỆT"
+            android:text="SPECIAL CALL SCENARIOS"
             android:textColor="#FBBF24"
             android:textSize="12sp"
             android:textStyle="bold"
             android:letterSpacing="0.05" />
 
-        <!-- Scenario Item 1: Sinh nhật -->
+        <!-- Scenario Item 1: Birthday -->
         <LinearLayout
             android:id="@+id/itemScenarioBirthday"
             android:layout_width="match_parent"
@@ -282,7 +282,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Chúc Mừng Sinh Nhật Từ Bắc Cực"
+                    android:text="Happy Birthday from North Pole"
                     android:textColor="#FEF3C7"
                     android:textSize="13sp"
                     android:textStyle="bold" />
@@ -290,7 +290,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Santa mở lịch và gửi lời chúc sinh nhật"
+                    android:text="Santa opens his calendar with birthday wishes"
                     android:textColor="#9CA3AF"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -300,12 +300,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:backgroundTint="#B45309"
-                android:text="Gọi ngay"
+                android:text="Call Now"
                 android:textColor="#FFFFFF"
                 android:textSize="11sp" />
         </LinearLayout>
 
-        <!-- Scenario Item 2: Uốn nắn nề nếp -->
+        <!-- Scenario Item 2: Discipline -->
         <LinearLayout
             android:id="@+id/itemScenarioDiscipline"
             android:layout_width="match_parent"
@@ -332,7 +332,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nhắc Nhở Bé Ngoan &amp; Vâng Lời"
+                    android:text="Good Behavior &amp; Listening"
                     android:textColor="#FEF3C7"
                     android:textSize="13sp"
                     android:textStyle="bold" />
@@ -340,7 +340,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Santa khuyên bảo bé nghe lời bố mẹ để nhận quà"
+                    android:text="Santa encourages good habits to earn gifts"
                     android:textColor="#9CA3AF"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -350,7 +350,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:backgroundTint="#B45309"
-                android:text="Gọi ngay"
+                android:text="Call Now"
                 android:textColor="#FFFFFF"
                 android:textSize="11sp" />
         </LinearLayout>
@@ -361,7 +361,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp"
-            android:text="HẸN GIỜ ĐỔ CHUÔNG BẤT NGỜ CHO BÉ"
+            android:text="SCHEDULE A SURPRISE CALL"
             android:textColor="#FBBF24"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -380,7 +380,7 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
                 android:backgroundTint="#374151"
-                android:text="Sau 10 giây"
+                android:text="In 10 sec"
                 android:textColor="#E5E7EB"
                 android:textSize="11sp" />
 
@@ -392,7 +392,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:backgroundTint="#374151"
-                android:text="Sau 30 giây"
+                android:text="In 30 sec"
                 android:textColor="#E5E7EB"
                 android:textSize="11sp" />
 
@@ -403,7 +403,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="4dp"
                 android:backgroundTint="#374151"
-                android:text="Sau 1 phút"
+                android:text="In 1 min"
                 android:textColor="#E5E7EB"
                 android:textSize="11sp" />
         </LinearLayout>

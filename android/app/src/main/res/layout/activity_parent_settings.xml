@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:backgroundTint="#262222"
-                android:text="← Quay lại"
+                android:text="← Back"
                 android:textColor="#E5E7EB"
                 android:textSize="12sp" />
 
@@ -35,7 +35,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cài Đặt Phụ Huynh"
+                android:text="Parent Settings"
                 android:textColor="#FEF3C7"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -58,7 +58,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🔒 Xác Thực Quyền Phụ Huynh"
+                android:text="🔒 Parent Verification"
                 android:textColor="#FBBF24"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Nhập mã PIN 4 số (Mặc định: 1225 - Đêm Noel):"
+                android:text="Enter 4-digit PIN (Default: 1225 - Christmas Eve):"
                 android:textColor="#9CA3AF"
                 android:textSize="12sp" />
 
@@ -81,7 +81,7 @@
                 android:maxLength="4"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#6B7280"
-                android:hint="Nhập 1225"
+                android:hint="Enter 1225"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp" />
 
@@ -91,7 +91,7 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="12dp"
                 android:backgroundTint="#059669"
-                android:text="Mở Khóa Bảng Điều Khiển"
+                android:text="Unlock Dashboard"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -108,7 +108,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tên của bé:"
+                android:text="Child's Name:"
                 android:textColor="#FEF3C7"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -120,7 +120,7 @@
                 android:layout_height="48dp"
                 android:background="#1E1919"
                 android:textColor="#FFFFFF"
-                android:hint="Ví dụ: Bé Bo, Nam, Linh"
+                android:hint="e.g. Leo, Emma, Noah"
                 android:textColorHint="#6B7280"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
@@ -130,7 +130,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tuổi của bé:"
+                android:text="Child's Age:"
                 android:textColor="#FEF3C7"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -143,7 +143,7 @@
                 android:background="#1E1919"
                 android:inputType="number"
                 android:textColor="#FFFFFF"
-                android:hint="Ví dụ: 5"
+                android:hint="e.g. 5"
                 android:textColorHint="#6B7280"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
@@ -153,7 +153,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Món quà bé đang mong ước nhất:"
+                android:text="Child's Dream Gift:"
                 android:textColor="#FEF3C7"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -165,17 +165,17 @@
                 android:layout_height="48dp"
                 android:background="#1E1919"
                 android:textColor="#FFFFFF"
-                android:hint="Ví dụ: Bộ xếp hình cỗ xe tuần lộc Lego"
+                android:hint="e.g. Lego Reindeer Sleigh"
                 android:textColorHint="#6B7280"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:layout_marginTop="4dp" />
 
-            <!-- Language Switch -->
+            <!-- Nice List Status -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ngôn ngữ Santa trò chuyện:"
+                android:text="Nice List Status:"
                 android:textColor="#FEF3C7"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -195,7 +195,7 @@
                     android:layout_weight="1"
                     android:layout_marginEnd="4dp"
                     android:backgroundTint="#059669"
-                    android:text="🇻🇳 Tiếng Việt"
+                    android:text="⭐ Nice List"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
@@ -206,7 +206,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="4dp"
                     android:backgroundTint="#262222"
-                    android:text="🇺🇸 English"
+                    android:text="⚠️ Needs Work"
                     android:textColor="#E5E7EB"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -218,7 +218,7 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="24dp"
                 android:backgroundTint="#DC2626"
-                android:text="💾 Lưu Hồ Sơ &amp; Cài Đặt"
+                android:text="💾 Save Profile &amp; Settings"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:textStyle="bold" />

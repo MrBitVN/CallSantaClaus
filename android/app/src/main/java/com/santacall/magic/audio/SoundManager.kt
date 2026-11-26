@@ -72,11 +72,11 @@ object SoundManager {
     fun startRingtone(context: Context) {
         stopRingtone()
         try {
-            val ringPath = "public/audio/santa_ring_call_vi.mp3"
+            val ringPath = "public/audio/santa_ring_call_en.mp3"
             val afd = try {
                 context.assets.openFd(ringPath)
             } catch (e: Exception) {
-                context.assets.openFd("audio/santa_ring_call_vi.mp3")
+                context.assets.openFd("audio/santa_ring_call_en.mp3")
             }
 
             ringtonePlayer = MediaPlayer().apply {

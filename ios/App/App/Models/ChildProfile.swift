@@ -1,29 +1,32 @@
 import Foundation
 
 struct ChildProfile: Codable {
-    var name: String = "Bé Yêu"
+    var name: String = "Little Star"
     var age: Int = 5
     var gender: String = "boy"
-    var hobby: String = "Xếp hình Lego & Vẽ tranh"
-    var favoriteFood: String = "Bánh pizza & Sữa tươi"
-    var goodHabit: String = "Biết vâng lời và chăm học"
-    var badHabit: String = "Đi ngủ đúng giờ"
-    var dreamGift: String = "Bộ lego cỗ xe tuần lộc"
+    var hobby: String = "Lego & Drawing"
+    var favoriteFood: String = "Pizza & Milk"
+    var goodHabit: String = "Listening to parents and studying hard"
+    var badHabit: String = "Going to bed on time"
+    var dreamGift: String = "Lego Reindeer Sleigh"
     var isNice: Bool = true
-    var language: String = "vi" // "vi" or "en"
+    var language: String = "en"
 
     static let userDefaultsKey = "SantaChildProfileKey"
 
     static func load() -> ChildProfile {
         if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
-           let profile = try? JSONDecoder().decode(ChildProfile.self, from: data) {
+           var profile = try? JSONDecoder().decode(ChildProfile.self, from: data) {
+            profile.language = "en"
             return profile
         }
         return ChildProfile()
     }
 
     func save() {
-        if let data = try? JSONEncoder().encode(self) {
+        var copy = self
+        copy.language = "en"
+        if let data = try? JSONEncoder().encode(copy) {
             UserDefaults.standard.set(data, forKey: ChildProfile.userDefaultsKey)
         }
     }

@@ -46,11 +46,11 @@ class MainActivity : Activity() {
         super.onResume()
         // Refresh child profile if parent changed it
         profile = ChildProfile.load(this)
-        tvHeroGreeting.text = "Chào ${profile.name}! 🎅"
+        tvHeroGreeting.text = "Hello ${profile.name}! 🎅"
         tvNiceListBadge.text = if (profile.isNice) {
-            "⭐ Tên bé: DANH SÁCH BÉ NGOAN XUẤT SẮC"
+            "⭐ CHILD STATUS: OFFICIAL NICE LIST"
         } else {
-            "⚠️ Tên bé: CẦN CỐ GẮNG THÊM ĐỂ NHẬN QUÀ"
+            "⚠️ CHILD STATUS: NEEDS IMPROVEMENT"
         }
     }
 
@@ -73,7 +73,7 @@ class MainActivity : Activity() {
         tvScheduledCountdown = findViewById(R.id.tvScheduledCountdown)
         btnCancelScheduled = findViewById(R.id.btnCancelScheduled)
 
-        tvHeroGreeting.text = "Chào ${profile.name}! 🎅"
+        tvHeroGreeting.text = "Hello ${profile.name}! 🎅"
     }
 
     private fun setupListeners() {
@@ -146,7 +146,7 @@ class MainActivity : Activity() {
         scheduledTimer = object : CountDownTimer((seconds * 1000).toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val secLeft = (millisUntilFinished / 1000).toInt() + 1
-                tvScheduledCountdown.text = "🎅 Santa đang chuẩn bị gọi... Chuông reo sau ${secLeft}s!"
+                tvScheduledCountdown.text = "🎅 Santa is preparing to call... Rings in ${secLeft}s!"
             }
 
             override fun onFinish() {

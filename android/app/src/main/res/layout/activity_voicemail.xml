@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:backgroundTint="#262222"
-            android:text="← Trang chủ"
+            android:text="← Home"
             android:textColor="#E5E7EB"
             android:textSize="12sp" />
 
@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Hộp Thư Thoại Bắc Cực"
+            android:text="North Pole Voicemail"
             android:textColor="#FEF3C7"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -90,7 +90,7 @@
         android:layout_height="54dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="#DC2626"
-        android:text="🎙️ Ghi Âm Điều Ước Gửi Santa"
+        android:text="🎙️ Record Wish for Santa"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:textStyle="bold" />
@@ -100,7 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Bấm các phím số hoặc nhấn ghi âm để gửi điều ước thẳng tới xưởng quà Santa!"
+        android:text="Press the keypad or tap record to send your Christmas wish directly to Santa's workshop!"
         android:textColor="#9CA3AF"
         android:textSize="12sp"
         android:gravity="center" />
